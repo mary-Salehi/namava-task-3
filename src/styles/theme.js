@@ -9,9 +9,11 @@ export const theme = {
     gray3: "#aaaaaa",
     gray4: "#666666",
     gray5: "#37383e",
+    gray7: "#1A1A1A",
     gray8: "#121212",
     red: "#d95c5c",
     blue: "#6eb8ff",
+    mainBlue: "#1993FF",
   },
   breakpoints: {
     mobile: 300,
