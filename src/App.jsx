@@ -1,10 +1,12 @@
+
+import LoginPage from "./pages/login";
 import { useGlobalStyles } from "./styles/globals";
 function App() {
   useGlobalStyles();
-  
+
   return (
     <>
-      <a href="">khd</a>
+      <LoginPage/>
     </>
   )
 }
