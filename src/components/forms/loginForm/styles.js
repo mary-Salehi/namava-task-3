@@ -44,6 +44,7 @@ const styles = {
 
   submitBtn: {
     display: "block",
+    width: '100%',
     textAlign: "center",
     fontSize: 12,
     backgroundColor: theme.colors.gray3,
