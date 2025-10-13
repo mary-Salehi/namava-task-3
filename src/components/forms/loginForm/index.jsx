@@ -1,23 +1,59 @@
+import toast from "react-hot-toast";
+import apiService from "../../../services/apiService";
 import { useStyles } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const END_POINT = "/v2.0/accounts/login";
 
 function LoginForm() {
   const classes = useStyles();
 
   const [userData, setUserData] = useState({
-    phone: "",
-    password: "",
+    UserName: "",
+    Password: "",
   });
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  let usernameREgex = /^(09\d{9}|\w+@\w+\.\w{2,})$/;
+  let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+  useEffect(() => {
+    if (
+      usernameREgex.test(userData.UserName) &&
+      passwordRegex.test(userData.Password)
+    ) {
+      setIsDisabled(false)
+    }
+  } , [userData.Password , userData.UserName])
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("jdhgjhdg");
-  };
 
+    setIsLoading(true)
+    try {
+      const response = await apiService({
+        endpoint: END_POINT,
+        data: userData,
+      });
+      console.log(response);
+      if (response.data.error) {
+        toast.error('نام کاربری یا رمز ورودی صحیح نیست')
+      }
+      console.log(response.data.error.message);
+      
+    } catch (error) {
+      setError(true)
+    } finally {
+      setIsLoading(false)
+    }
+  };
+  
   return (
     <form onSubmit={submitHandler}>
       <div className={classes.inputContainer}>
@@ -25,8 +61,8 @@ function LoginForm() {
         <input
           type="text"
           placeholder="شماره تلفن همراه یا ایمیل"
-          value={userData.phone}
-          name="phone"
+          value={userData.UserName}
+          name="UserName"
           onChange={handleChange}
         />
       </div>
@@ -35,13 +71,13 @@ function LoginForm() {
         <input
           type="text"
           placeholder="رمز عبور"
-          value={userData.password}
-          name="password"
+          value={userData.Password}
+          name="Password"
           onChange={handleChange}
         />
       </div>
-      <button type="submit" className={classes.submitBtn}>
-        ورود
+      <button disabled={isDisabled} type="submit" className={classes.submitBtn}>
+        {isLoading ? <span>....</span> : <span>ورود</span>}
       </button>
     </form>
   );
