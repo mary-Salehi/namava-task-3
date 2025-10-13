@@ -47,13 +47,19 @@ const styles = {
     width: '100%',
     textAlign: "center",
     fontSize: 12,
-    backgroundColor: theme.colors.gray3,
+    backgroundColor: theme.colors.mainBlue,
     color: theme.colors.white,
     borderRadius: 12,
     padding: [10, 12],
     cursor: "pointer",
     marginTop: 32,
     marginBottom: 12,
+
+    '&:disabled': {
+      backgroundColor: theme.colors.gray3,
+      cursor: 'default',
+      
+    },
 
     [theme.mq(theme.breakpoints.tablet)]: {
       fontSize: 14,
