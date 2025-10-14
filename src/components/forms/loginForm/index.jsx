@@ -1,7 +1,8 @@
+import toast from "react-hot-toast";
+import { useLogin } from "../../../hooks/useLogin";
 import { useStyles } from "./styles";
 import { useEffect, useState } from "react";
-import { useLogin } from "../../../hooks/useLogin";
-
+import DangerIcon from "../../icons/DangerIcon";
 
 function LoginForm() {
   const classes = useStyles();
@@ -20,27 +21,57 @@ function LoginForm() {
       usernameREgex.test(userData.UserName) &&
       passwordRegex.test(userData.Password)
     ) {
-      setIsDisabled(false)
+      setIsDisabled(false);
     }
-  } , [userData.Password , userData.UserName])
+  }, [userData.Password, userData.UserName]);
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const {sendUserData , isLoading , isSucceeded , error} = useLogin()
+  const { sendUserData, isLoading, isSucceeded, error } = useLogin();
 
   const submitData = (e) => {
     e.preventDefault();
-    sendUserData(userData)
+    sendUserData(userData);
+  };
+  
+  const getErrorMessage = (error) => {
+    switch (error) {
+      case "Invalid username or password":
+        return "نام کاربری یا رمز ورودی صحیح نیست.";
+      case "Invalid Username":
+        return "نام کاربری صحیح نیست.";
+      case "Network Error":
+        return "مشکل در اتصال به اینترنت";
+      default:
+        return "مشکلی رخ داده"
+    }
   }
 
   useEffect(() => {
-    if (isSucceeded) {
-      console.log('needs navigation',isSucceeded);
+    const errorMessage = getErrorMessage(error);
+    if (error) {
+      toast.error(
+        <div className={classes.toastContainer}>
+          <DangerIcon className={classes.dangerIcon} />
+          <span>{errorMessage}</span>
+        </div>,
+        {
+          className: classes.errorToast,
+          icon: null,
+          duration: 5000,
+        }
+      );
     }
-  } , [isSucceeded])
-  
+  }, [error]);
+
+  useEffect(() => {
+    if (isSucceeded) {
+      console.log("needs navigation", isSucceeded);
+    }
+  }, [isSucceeded]);
+
   return (
     <form onSubmit={submitData}>
       <div className={classes.inputContainer}>
@@ -63,7 +94,11 @@ function LoginForm() {
           onChange={handleChange}
         />
       </div>
-      <button disabled={isLoading ? true : isDisabled} type="submit" className={classes.submitBtn}>
+      <button
+        disabled={isLoading ? true : isDisabled}
+        type="submit"
+        className={classes.submitBtn}
+      >
         {isLoading ? <span>....</span> : <span>ورود</span>}
       </button>
     </form>
