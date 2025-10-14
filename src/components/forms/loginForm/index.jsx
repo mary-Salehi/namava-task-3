@@ -1,9 +1,7 @@
-import toast from "react-hot-toast";
-import apiService from "../../../services/apiService";
 import { useStyles } from "./styles";
 import { useEffect, useState } from "react";
+import { useLogin } from "../../../hooks/useLogin";
 
-const END_POINT = "/v2.0/accounts/login";
 
 function LoginForm() {
   const classes = useStyles();
@@ -13,8 +11,6 @@ function LoginForm() {
     Password: "",
   });
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   let usernameREgex = /^(09\d{9}|\w+@\w+\.\w{2,})$/;
   let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -32,30 +28,21 @@ function LoginForm() {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const {sendUserData , isLoading , isSucceeded , error} = useLogin()
 
-    setIsLoading(true)
-    try {
-      const response = await apiService({
-        endpoint: END_POINT,
-        data: userData,
-      });
-      console.log(response);
-      if (response.data.error) {
-        toast.error('نام کاربری یا رمز ورودی صحیح نیست')
-      }
-      console.log(response.data.error.message);
-      
-    } catch (error) {
-      setError(true)
-    } finally {
-      setIsLoading(false)
+  const submitData = (e) => {
+    e.preventDefault();
+    sendUserData(userData)
+  }
+
+  useEffect(() => {
+    if (isSucceeded) {
+      console.log('needs navigation',isSucceeded);
     }
-  };
+  } , [isSucceeded])
   
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitData}>
       <div className={classes.inputContainer}>
         <label>شماره تلفن همراه یا ایمیل</label>
         <input
@@ -76,7 +63,7 @@ function LoginForm() {
           onChange={handleChange}
         />
       </div>
-      <button disabled={isDisabled} type="submit" className={classes.submitBtn}>
+      <button disabled={isLoading ? true : isDisabled} type="submit" className={classes.submitBtn}>
         {isLoading ? <span>....</span> : <span>ورود</span>}
       </button>
     </form>
