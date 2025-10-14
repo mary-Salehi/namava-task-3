@@ -65,5 +65,26 @@ const styles = {
       fontSize: 14,
     },
   },
+
+  toastContainer : {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    width: '100%',
+  },
+
+  errorToast: {
+    fontSize: 14,
+    color: theme.colors.white,
+    backgroundColor: theme.colors.red,
+    borderRadius: 12,
+    padding: [12, 8]
+  },
+
+  dangerIcon: {
+    fill: theme.colors.white,
+    width: 24,
+    height: 24,
+  }
 };
 export const useStyles = createUseStyles(styles);
