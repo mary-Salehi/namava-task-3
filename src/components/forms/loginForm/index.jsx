@@ -3,6 +3,7 @@ import { useLogin } from "../../../hooks/useLogin";
 import { useStyles } from "./styles";
 import { useEffect, useState } from "react";
 import DangerIcon from "../../icons/DangerIcon";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const classes = useStyles();
@@ -12,6 +13,7 @@ function LoginForm() {
     Password: "",
   });
   const [isDisabled, setIsDisabled] = useState(true);
+  const navigate = useNavigate();
 
   let usernameREgex = /^(09\d{9}|\w+@\w+\.\w{2,})$/;
   let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -44,6 +46,8 @@ function LoginForm() {
         return "نام کاربری صحیح نیست.";
       case "Network Error":
         return "مشکل در اتصال به اینترنت";
+      case "Invalid phone number":
+        return "شماره تلفن همراه صحیح نیست.";
       default:
         return "مشکلی رخ داده"
     }
@@ -68,7 +72,7 @@ function LoginForm() {
 
   useEffect(() => {
     if (isSucceeded) {
-      console.log("needs navigation", isSucceeded);
+      navigate('/')
     }
   }, [isSucceeded]);
 
