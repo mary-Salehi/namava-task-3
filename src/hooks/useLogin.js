@@ -1,18 +1,17 @@
 import { useState } from "react";
 import apiService from "../services/apiService";
-import toast from "react-hot-toast";
 
 const END_POINT = "/v2.0/accounts/login";
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [isSucceeded, setIsSucceeded] = useState(null)
+  const [error, setError] = useState(null);
+  const [isSucceeded, setIsSucceeded] = useState(null);
 
   const sendUserData = async (userData) => {
     setError(null);
     setIsSucceeded(null);
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
       const response = await apiService({
@@ -21,25 +20,22 @@ export const useLogin = () => {
       });
 
       if (response.data.succeeded) {
-        setIsSucceeded(true)
-      }
-      else {
-        setIsSucceeded(false)
-        if (response.data.error) {
-        toast.error('نام کاربری یا رمز ورودی صحیح نیست')
-      }
+        setIsSucceeded(true);
+      } else {
+        setIsSucceeded(false);
+        setError(response.data?.error?.message);
       }
     } catch (error) {
-      setError(true)
+      setError(error.message);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  };
+  }; 
 
   return {
     error,
     isLoading,
     sendUserData,
-    isSucceeded
-  }
+    isSucceeded,
+  };
 };
