@@ -10,7 +10,7 @@ const styles = {
     // transform: ({ isHeaderFixed }) =>
     //   isHeaderFixed ? "translateY(0)" : "translateY(-100%)",
     transition: "all 0.5s ease",
-    background: theme.colors.gray8,
+    background: "linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0) 100%)",
     display: "flex",
     alignItems: "strech",
     justifyContent: "space-between",
@@ -25,7 +25,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: "20px",
-    width: 'auto'
+    width: "auto",
   },
 
   navLogo: {
@@ -73,7 +73,7 @@ const styles = {
   },
 
   headerIcon: {
-    color: theme.colors.white,  
+    color: theme.colors.white,
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
@@ -84,6 +84,41 @@ const styles = {
       width: "40px",
       height: "40px",
     },
+  },
+
+  loginBtn: {
+    color: theme.colors.white,
+    backgroundColor: "rgba(168, 167, 167, 0.1)",
+    padding: [12, 10],
+    borderRadius: 12,
+    cursor: "pointer",
+    fontSize: 12,
+
+    "&:hover": {
+      backgroundColor: theme.colors.mainBlue,
+    },
+
+    [theme.mq(theme.breakpoints.tablet)]: {
+      fontSize: 14,
+    },
+  },
+
+  accountProfile: {
+    width: 25,
+    height: 25,
+    borderRadius: "100%",
+    backgroundColor: theme.colors.gray4,
+  },
+
+  ring: {
+    width: 30,
+    height: 30,
+    borderRadius: "100%",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    border: '1px solid red'
   },
 };
 
