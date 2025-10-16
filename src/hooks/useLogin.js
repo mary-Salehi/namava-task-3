@@ -1,5 +1,6 @@
 import { useState } from "react";
 import apiService from "../services/apiService";
+import { setCookie } from "../utils/handleCookie";
 
 const END_POINT = "/v2.0/accounts/login";
 
@@ -21,6 +22,7 @@ export const useLogin = () => {
 
       if (response.data.succeeded) {
         setIsSucceeded(true);
+        setCookie('token',response.data.result.token)
       } else {
         setIsSucceeded(false);
         setError(response.data?.error?.message);
@@ -36,6 +38,6 @@ export const useLogin = () => {
     error,
     isLoading,
     sendUserData,
-    isSucceeded,
+    isSucceeded
   };
 };
