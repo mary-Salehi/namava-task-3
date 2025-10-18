@@ -88,11 +88,12 @@ const styles = {
 
   loginBtn: {
     color: theme.colors.white,
-    backgroundColor: "rgba(168, 167, 167, 0.1)",
-    padding: [12, 10],
+    backgroundColor: "rgba(168, 167, 167, 0.3)",
+    padding: [7, 16],
     borderRadius: 12,
     cursor: "pointer",
     fontSize: 12,
+    fontWeight: 700,
 
     "&:hover": {
       backgroundColor: theme.colors.mainBlue,
