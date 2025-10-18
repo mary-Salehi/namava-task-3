@@ -80,6 +80,10 @@ const styles = {
     color: theme.colors.mainBlue,
     marginBottom: 12,
 
+    "&:hover": {
+      color: "rgba(0, 95, 180, 0.9)",
+    },
+
     [theme.mq(theme.breakpoints.tablet)]: {
       fontSize: 14,
       marginBottom: 20,
