@@ -9,7 +9,9 @@ function Login() {
   return (
     <div className={classes.login}>
       <div className={classes.header}>
-        <NamavaLogo className={classes.namavaLogo} />
+        <Link to='/'>
+          <NamavaLogo className={classes.namavaLogo} />
+        </Link>
         <Link className={classes.register}>ثبت نام</Link>
       </div>
       <div className={classes.enter}>
