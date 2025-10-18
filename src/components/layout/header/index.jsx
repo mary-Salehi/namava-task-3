@@ -39,7 +39,7 @@ function Header() {
           <SearchIcon className={classes.headerIcon} />
           {!isLoggedIn ? (
             <div className={classes.ring}>
-              <div className={classes.accountProfile}></div>
+              <img src="src/assets/images/userProfile.png" className={classes.accountProfile}/>
             </div>
           ) : (
             <Link to="/login" className={classes.loginBtn}>
