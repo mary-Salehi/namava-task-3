@@ -37,7 +37,7 @@ function Header() {
         </div>
         <div className={classes.navActions}>
           <SearchIcon className={classes.headerIcon} />
-          {!isLoggedIn ? (
+          {isLoggedIn ? (
             <div className={classes.ring}>
               <img src="src/assets/images/userProfile.png" className={classes.accountProfile}/>
             </div>
