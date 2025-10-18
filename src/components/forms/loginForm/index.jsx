@@ -35,9 +35,17 @@ function LoginForm() {
 
   const submitData = (e) => {
     e.preventDefault();
-    sendUserData(userData);
+
+    const formattedUserData = {
+      ...userData,
+      UserName: userData.UserName.startsWith("09")
+        ? userData.UserName.replace("0", "+98")
+        : userData.UserName,
+    };
+
+    sendUserData(formattedUserData);
   };
-  
+
   const getErrorMessage = (error) => {
     switch (error) {
       case "Invalid username or password":
@@ -49,9 +57,9 @@ function LoginForm() {
       case "Invalid phone number":
         return "شماره تلفن همراه صحیح نیست.";
       default:
-        return "مشکلی رخ داده"
+        return "مشکلی رخ داده";
     }
-  }
+  };
 
   useEffect(() => {
     const errorMessage = getErrorMessage(error);
@@ -72,7 +80,7 @@ function LoginForm() {
 
   useEffect(() => {
     if (isSucceeded) {
-      navigate('/')
+      navigate("/");
     }
   }, [isSucceeded]);
 
