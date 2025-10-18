@@ -104,21 +104,31 @@ const styles = {
   },
 
   accountProfile: {
-    width: 25,
-    height: 25,
+    width: 30,
+    height: 30,
     borderRadius: "100%",
     backgroundColor: theme.colors.gray4,
+
+    [theme.mq(theme.breakpoints.desktop)]: {
+      width: 36,
+      height: 36,
+    },
   },
 
   ring: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     borderRadius: "100%",
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    border: '1px solid red'
+    border: `3px solid ${theme.colors.red}`,
+
+    [theme.mq(theme.breakpoints.desktop)]: {
+      width: 45,
+      height: 45,
+    },
   },
 };
 
