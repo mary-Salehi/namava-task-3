@@ -8,6 +8,7 @@ import { isValidPassword, isValidUsername } from "../../../utils/validation";
 import TextField from "../../../ui/textField";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
 import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
+import Spinner from "./lottinAnimation/spinner";
 
 function LoginForm() {
   const classes = useStyles();
@@ -87,7 +88,7 @@ function LoginForm() {
         type="submit"
         className={classes.submitBtn}
       >
-        {isLoading ? <span>....</span> : <span>ورود</span>}
+        {isLoading ? <Spinner/> : <span>ورود</span>}
       </button>
     </form>
   );
