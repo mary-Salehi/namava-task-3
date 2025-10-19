@@ -131,6 +131,12 @@ const styles = {
       height: 45,
     },
   },
+
+  flexRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8
+  }
 };
 
 export const useStyles = createUseStyles(styles);
