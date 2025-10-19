@@ -4,6 +4,7 @@ import { useStyles } from "./styles";
 import { useEffect, useState } from "react";
 import DangerIcon from "../../icons/DangerIcon";
 import { useNavigate } from "react-router-dom";
+import { isValidPassword, isValidUsername } from "../../../utils/validation";
 
 function LoginForm() {
   const classes = useStyles();
@@ -15,13 +16,11 @@ function LoginForm() {
   const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
 
-  let usernameREgex = /^(09\d{9}|\w+@\w+\.\w{2,})$/;
-  let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
   useEffect(() => {
     if (
-      usernameREgex.test(userData.UserName) &&
-      passwordRegex.test(userData.Password)
+      isValidUsername(userData.UserName) &&
+      isValidPassword(userData.Password)
     ) {
       setIsDisabled(false);
     }
