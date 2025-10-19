@@ -5,6 +5,7 @@ import NamavaLogo from "../../icons/NamavaLogo";
 import SearchIcon from "../../icons/SearchIcon";
 import { useEffect, useState } from "react";
 import { getCookie } from "../../../utils/handleCookie";
+import LogoutIcon from "../../icons/LogoutIcon";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -38,8 +39,17 @@ function Header() {
         <div className={classes.navActions}>
           <SearchIcon className={classes.headerIcon} />
           {isLoggedIn ? (
-            <div className={classes.ring}>
-              <img src="src/assets/images/userProfile.png" className={classes.accountProfile}/>
+            <div className={classes.flexRow}>
+              <div className={classes.flexRow}>
+                <span>خروج</span>
+                <LogoutIcon/>
+              </div>
+              <div className={classes.ring}>
+                <img
+                  src="src/assets/images/userProfile.png"
+                  className={classes.accountProfile}
+                />
+              </div>
             </div>
           ) : (
             <Link to="/login" className={classes.loginBtn}>
