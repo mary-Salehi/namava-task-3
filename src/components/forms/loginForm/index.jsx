@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import DangerIcon from "../../icons/DangerIcon";
 import { useNavigate } from "react-router-dom";
 import { isValidPassword, isValidUsername } from "../../../utils/validation";
+import TextField from "../../../ui/textField";
 
 function LoginForm() {
   const classes = useStyles();
@@ -15,7 +16,6 @@ function LoginForm() {
   });
   const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (
@@ -85,26 +85,24 @@ function LoginForm() {
 
   return (
     <form onSubmit={submitData}>
-      <div className={classes.inputContainer}>
-        <label>شماره تلفن همراه یا ایمیل</label>
-        <input
-          type="text"
-          placeholder="شماره تلفن همراه یا ایمیل"
-          value={userData.UserName}
-          name="UserName"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={classes.inputContainer}>
-        <label>رمز عبور</label>
-        <input
-          type="text"
-          placeholder="رمز عبور"
-          value={userData.Password}
-          name="Password"
-          onChange={handleChange}
-        />
-      </div>
+      <TextField
+        label="شماره تلفن همراه یا ایمیل"
+        type="text"
+        placeholder="شماره تلفن همراه یا ایمیل"
+        name="UserName"
+        value={userData.UserName}
+        onChange={handleChange}
+        className={classes.inputContainer}
+      />
+      <TextField
+        label="رمز عبور"
+        type="text"
+        placeholder="رمز عبور"
+        name="Password"
+        value={userData.Password}
+        onChange={handleChange}
+        className={classes.inputContainer}
+      />
       <button
         disabled={isLoading ? true : isDisabled}
         type="submit"
