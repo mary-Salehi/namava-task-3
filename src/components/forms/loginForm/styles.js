@@ -45,6 +45,7 @@ const styles = {
   submitBtn: {
     display: "block",
     width: '100%',
+    height: 40,
     textAlign: "center",
     fontSize: 12,
     backgroundColor: theme.colors.mainBlue,
@@ -63,6 +64,7 @@ const styles = {
 
     [theme.mq(theme.breakpoints.tablet)]: {
       fontSize: 14,
+      height: 42,
     },
   },
 
