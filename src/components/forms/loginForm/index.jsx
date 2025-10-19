@@ -6,6 +6,8 @@ import DangerIcon from "../../icons/DangerIcon";
 import { useNavigate } from "react-router-dom";
 import { isValidPassword, isValidUsername } from "../../../utils/validation";
 import TextField from "../../../ui/textField";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
+import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
 
 function LoginForm() {
   const classes = useStyles();
@@ -14,19 +16,13 @@ function LoginForm() {
     UserName: "",
     Password: "",
   });
-  const [isDisabled, setIsDisabled] = useState(true);
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (
-      isValidUsername(userData.UserName) &&
-      isValidPassword(userData.Password)
-    ) {
-      setIsDisabled(false);
-    }
-  }, [userData.Password, userData.UserName]);
+  const isFormValid =
+    isValidUsername(userData.UserName) && isValidPassword(userData.Password);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
@@ -37,32 +33,15 @@ function LoginForm() {
 
     const formattedUserData = {
       ...userData,
-      UserName: userData.UserName.startsWith("09")
-        ? userData.UserName.replace("0", "+98")
-        : userData.UserName,
+      UserName: formatPhoneNumber(userData.UserName),
     };
 
     sendUserData(formattedUserData);
   };
 
-  const getErrorMessage = (error) => {
-    switch (error) {
-      case "Invalid username or password":
-        return "نام کاربری یا رمز ورودی صحیح نیست.";
-      case "Invalid Username":
-        return "نام کاربری صحیح نیست.";
-      case "Network Error":
-        return "مشکل در اتصال به اینترنت";
-      case "Invalid phone number":
-        return "شماره تلفن همراه صحیح نیست.";
-      default:
-        return "مشکلی رخ داده";
-    }
-  };
-
   useEffect(() => {
-    const errorMessage = getErrorMessage(error);
     if (error) {
+      const errorMessage = getErrorMessage(error);
       toast.error(
         <div className={classes.toastContainer}>
           <DangerIcon className={classes.dangerIcon} />
@@ -91,7 +70,7 @@ function LoginForm() {
         placeholder="شماره تلفن همراه یا ایمیل"
         name="UserName"
         value={userData.UserName}
-        onChange={handleChange}
+        onChange={handleInputChange}
         className={classes.inputContainer}
       />
       <TextField
@@ -100,11 +79,11 @@ function LoginForm() {
         placeholder="رمز عبور"
         name="Password"
         value={userData.Password}
-        onChange={handleChange}
+        onChange={handleInputChange}
         className={classes.inputContainer}
       />
       <button
-        disabled={isLoading ? true : isDisabled}
+        disabled={isLoading || !isFormValid}
         type="submit"
         className={classes.submitBtn}
       >
