@@ -73,22 +73,24 @@ function LoginForm() {
         value={userData.UserName}
         onChange={handleInputChange}
         className={classes.inputContainer}
+        phoneIcon={true}
       />
       <TextField
         label="رمز عبور"
-        type="text"
+        type="password"
         placeholder="رمز عبور"
         name="Password"
         value={userData.Password}
         onChange={handleInputChange}
         className={classes.inputContainer}
+        passwordIcon={true}
       />
       <button
         disabled={isLoading || !isFormValid}
         type="submit"
         className={classes.submitBtn}
       >
-        {isLoading ? <Spinner/> : <span>ورود</span>}
+        {isLoading ? <Spinner /> : <span>ورود</span>}
       </button>
     </form>
   );
