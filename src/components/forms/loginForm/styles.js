@@ -18,10 +18,7 @@ const styles = {
     },
 
     "& input": {
-      border: `solid 1px ${theme.colors.gray2}`,
-      borderRadius: 12,
-      padding: [10, 12],
-      transition: "border-color 0.1s ease",
+      width: '100%',
 
       [theme.mq(theme.breakpoints.tablet)]: {
         fontSize: 14,
@@ -30,14 +27,11 @@ const styles = {
       "&::placeholder": {
         fontSize: 12,
         color: theme.colors.gray3,
+        textAlign: 'right',
 
         [theme.mq(theme.breakpoints.tablet)]: {
           fontSize: 14,
         },
-      },
-
-      "&:focus": {
-        borderColor: theme.colors.black,
       },
     },
   },
