@@ -4,9 +4,7 @@ export function setCookie(name, value, minute = 1, path = "/") {
 }
 
 export function getCookie(name) {
-  const cookies = document.cookie.split(
-    "; "
-  );
+  const cookies = document.cookie.split("; ");
   for (let cookie of cookies) {
     cookie = cookie.trim();
     if (cookie.startsWith(name + "=")) {
@@ -14,4 +12,8 @@ export function getCookie(name) {
     }
   }
   return null;
+}
+
+export function deleteCookie(name, path = "/") {
+  document.cookie = `${name}=; max-age=0; path=${path}`;
 }
