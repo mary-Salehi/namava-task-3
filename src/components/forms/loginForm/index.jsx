@@ -9,6 +9,7 @@ import TextField from "../../../ui/textField";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
 import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
 import Spinner from "./lottinAnimation/spinner";
+import { convertToLatinNumbers } from "../../../utils/convertNumbers";
 
 function LoginForm() {
   const classes = useStyles();
@@ -24,7 +25,8 @@ function LoginForm() {
     isValidUsername(userData.UserName) && isValidPassword(userData.Password);
 
   const handleInputChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    const latinValue = convertToLatinNumbers(e.target.value);
+    setUserData({ ...userData, [e.target.name]: latinValue });
   };
 
   const { sendUserData, isLoading, isSucceeded, error } = useLogin();
