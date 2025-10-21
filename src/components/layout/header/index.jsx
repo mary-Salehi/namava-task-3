@@ -3,22 +3,16 @@ import { navLinks } from "../../../constants/navLinks";
 import { useStyles } from "./styles";
 import NamavaLogo from "../../icons/NamavaLogo";
 import SearchIcon from "../../icons/SearchIcon";
-import { useEffect, useState } from "react";
-import { getCookie } from "../../../utils/handleCookie";
-import LogoutIcon from "../../icons/LogoutIcon";
+import { useState } from "react";
+import { deleteCookie, getCookie } from "../../../utils/handleCookie";
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!getCookie("token"));
 
-  useEffect(() => {
-    const checkToken = () => {
-      let hasToken = getCookie("token");
-      hasToken ? setIsLoggedIn(true) : setIsLoggedIn(false);
-    };
-    checkToken();
-    const interval = setInterval(checkToken, 60000);
-    return () => clearInterval(interval);
-  }, []);
+  const handleDeleteCookie = () => {
+    deleteCookie("token");
+    setIsLoggedIn(false);
+  };
 
   const classes = useStyles();
   return (
@@ -40,10 +34,12 @@ function Header() {
           <SearchIcon className={classes.headerIcon} />
           {isLoggedIn ? (
             <div className={classes.flexRow}>
-              <div className={classes.flexRow}>
-                <span>خروج</span>
-                <LogoutIcon/>
-              </div>
+              <button
+                onClick={handleDeleteCookie}
+                className={classes.logoutContainer}
+              >
+                <span>خروج از حساب کاربری</span>
+              </button>
               <div className={classes.ring}>
                 <img
                   src="src/assets/images/userProfile.png"
