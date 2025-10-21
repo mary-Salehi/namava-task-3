@@ -1,5 +1,5 @@
-export function setCookie(name, value, minute = 1, path = "/") {
-  let seconds = minute * 60;
+export function setCookie(name, value, day = 1, path = "/") {
+  let seconds = day * 24 * 60 * 60;
   document.cookie = `${name}=${value}; max-age=${seconds}; path=${path}`;
 }
 
