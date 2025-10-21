@@ -7,8 +7,6 @@ const styles = {
     top: 0,
     width: "100%",
     zIndex: 100,
-    // transform: ({ isHeaderFixed }) =>
-    //   isHeaderFixed ? "translateY(0)" : "translateY(-100%)",
     transition: "all 0.5s ease",
     background: "linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0) 100%)",
     display: "flex",
@@ -132,10 +130,32 @@ const styles = {
     },
   },
 
+  logoutContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+
+    color: theme.colors.white,
+    backgroundColor: "rgba(168, 167, 167, 0.3)",
+    padding: [7, 16],
+    borderRadius: 12,
+    cursor: "pointer",
+    fontSize: 12,
+    fontWeight: 700,
+
+    "&:hover": {
+      backgroundColor: theme.colors.mainBlue,
+    },
+
+    [theme.mq(theme.breakpoints.tablet)]: {
+      fontSize: 14,
+    },
+  },
+
   flexRow: {
     display: 'flex',
     alignItems: 'center',
-    gap: 8
+    gap: 8,
   }
 };
 
