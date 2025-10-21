@@ -2,10 +2,22 @@
 import { Toaster } from "react-hot-toast";
 import LoginPage from "./pages/login";
 import { useGlobalStyles } from "./styles/globals";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/main";
+import { useEffect } from "react";
+
 function App() {
   useGlobalStyles();
+
+  const location = useLocation()
+
+  useEffect(() => {
+    const titles = {
+      '/': 'نماوا',
+      '/login': 'ورود',
+    };
+    document.title = titles[location.pathname]
+  } , [location.pathname])
 
   return (
     <>
