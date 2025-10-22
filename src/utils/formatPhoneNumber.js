@@ -1,1 +1,1 @@
-export const formatPhoneNumber = (phoneNumber) => phoneNumber.startsWith("09") ? phoneNumber.replace('0', "+98") : phoneNumber;
+export const formatPhoneNumber = (phoneNumber) => phoneNumber.startsWith("09") && phoneNumber.length === 11 ? phoneNumber.replace('0', "+98") : phoneNumber;
