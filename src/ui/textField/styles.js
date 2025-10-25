@@ -21,7 +21,7 @@ const styles = {
   },
   },
 
-  phoneIcon: {
+  numberPrefix: {
     borderRight: `1px solid ${theme.colors.gray8}`,
     paddingRight: 6,
     fontSize: 14,

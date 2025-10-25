@@ -13,24 +13,24 @@ function TextField({
   placeholder,
   onChange,
   className,
-  phoneIcon = false,
+  showNumberPrefix = false,
   passwordIcon = false,
 }) {
   const classes = useStyles();
-  const [isPasswordShown, setIspasswordShown] = useState(false);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const handleShowPassword = () => {
-    setIspasswordShown(!isPasswordShown);
+    setIsPasswordShown(!isPasswordShown);
   };
 
-  const isPhoneNumber = isOnlyNumbers(value) && phoneIcon;
+  const isPhoneNumber = isOnlyNumbers(value) && showNumberPrefix;
 
   return (
     <div className={className}>
       <label>{label}</label>
       <div className={classes.inputWrapper} dir="ltr">
         {isPhoneNumber && value.length > 8 && (
-          <span className={classes.phoneIcon}>
+          <span className={classes.numberPrefix}>
             +{convertToPersianNumbers(98)}
           </span>
         )}
