@@ -6,7 +6,7 @@ import DangerIcon from "../../icons/DangerIcon";
 import { isValidPassword, isValidUsername } from "../../../utils/validation";
 import TextField from "../../../ui/textField";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
-import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
+import formatPhoneNumber from "../../../utils/formatPhoneNumber";
 import Spinner from "./lottinAnimation/spinner";
 import { convertToLatinNumbers } from "../../../utils/convertNumbers";
 
