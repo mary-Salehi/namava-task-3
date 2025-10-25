@@ -16,7 +16,7 @@ export const theme = {
     mainBlue: "#1993FF",
   },
   breakpoints: {
-    mobile: 300,
+    mobile: 360,
     tablet: 800,
     desktop: 1280,
   },
