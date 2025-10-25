@@ -3,7 +3,6 @@ import { useLogin } from "../../../hooks/useLogin";
 import { useStyles } from "./styles";
 import { useEffect, useState } from "react";
 import DangerIcon from "../../icons/DangerIcon";
-import { useNavigate } from "react-router-dom";
 import { isValidPassword, isValidUsername } from "../../../utils/validation";
 import TextField from "../../../ui/textField";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
@@ -19,8 +18,6 @@ function LoginForm() {
     Password: "",
   });
 
-  const navigate = useNavigate();
-
   const isFormValid =
     isValidUsername(userData.UserName) && isValidPassword(userData.Password);
 
@@ -29,7 +26,7 @@ function LoginForm() {
     setUserData({ ...userData, [e.target.name]: latinValue });
   };
 
-  const { sendUserData, isLoading, isSucceeded, error } = useLogin();
+  const { sendUserData, isLoading, error } = useLogin();
 
   const submitData = (e) => {
     e.preventDefault();
@@ -58,12 +55,6 @@ function LoginForm() {
       );
     }
   }, [error]);
-
-  useEffect(() => {
-    if (isSucceeded) {
-      navigate("/");
-    }
-  }, [isSucceeded]);
 
   return (
     <form onSubmit={submitData}>

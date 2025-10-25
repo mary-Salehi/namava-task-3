@@ -1,17 +1,17 @@
 import { useState } from "react";
 import apiService from "../services/apiService";
 import { setCookie } from "../utils/handleCookie";
+import { useNavigate } from "react-router-dom";
 
 const END_POINT = "/v2.0/accounts/login";
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isSucceeded, setIsSucceeded] = useState(null);
+  const navigate = useNavigate();
 
   const sendUserData = async (userData) => {
     setError(null);
-    setIsSucceeded(null);
     setIsLoading(true);
 
     try {
@@ -21,10 +21,9 @@ export const useLogin = () => {
       });
 
       if (response.data.succeeded) {
-        setIsSucceeded(true);
-        setCookie('token',response.data.result.token)
+        navigate("/");
+        setCookie("token", response.data.result.token);
       } else {
-        setIsSucceeded(false);
         setError(response.data?.error?.message);
       }
     } catch (error) {
@@ -32,12 +31,11 @@ export const useLogin = () => {
     } finally {
       setIsLoading(false);
     }
-  }; 
+  };
 
   return {
     error,
     isLoading,
     sendUserData,
-    isSucceeded
   };
 };
