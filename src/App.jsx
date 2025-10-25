@@ -4,6 +4,7 @@ import { useGlobalStyles } from "./styles/globals";
 import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/home";
 import { useEffect } from "react";
+import pageTitles from "./constants/pageTitles"
 
 function App() {
   useGlobalStyles();
@@ -11,11 +12,7 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    const titles = {
-      '/': 'نماوا',
-      '/login': 'ورود',
-    };
-    document.title = titles[location.pathname]
+    document.title = pageTitles[location.pathname]
   } , [location.pathname])
 
   return (
