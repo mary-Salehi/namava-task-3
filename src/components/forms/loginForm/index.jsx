@@ -27,7 +27,7 @@ function LoginForm() {
     setUserData({ ...userData, [e.target.name]: latinValue });
   };
 
-  const { sendUserData, isLoading, error } = useLogin();
+  const { login, isLoading, error } = useLogin();
 
   const submitData = (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ function LoginForm() {
     };
 
     const pascalCaseUserData = convertObjectKeysToPascal(formattedUserData);
-    sendUserData(pascalCaseUserData);
+    login(pascalCaseUserData);
   };
 
   useEffect(() => {

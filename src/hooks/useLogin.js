@@ -10,7 +10,7 @@ export const useLogin = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const sendUserData = async (userData) => {
+  const login = async (userData) => {
     setError(null);
     setIsLoading(true);
 
@@ -36,6 +36,6 @@ export const useLogin = () => {
   return {
     error,
     isLoading,
-    sendUserData,
+    login,
   };
 };
