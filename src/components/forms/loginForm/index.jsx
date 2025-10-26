@@ -45,12 +45,12 @@ function LoginForm() {
     if (error) {
       const errorMessage = getErrorMessage(error);
       toast.error(
-        <div className={classes.toastContainer}>
-          <DangerIcon className={classes.dangerIcon} />
+        <div className="toastContainer">
+          <DangerIcon className="dangerIcon"/>
           <span>{errorMessage}</span>
         </div>,
         {
-          className: classes.errorToast,
+          className: "errorToast",
           icon: null,
           duration: 5000,
         }
