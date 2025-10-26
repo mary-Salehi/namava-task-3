@@ -20,7 +20,7 @@ function TextField({
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const handleShowPassword = () => {
-    setIsPasswordShown(!isPasswordShown);
+    setIsPasswordShown((isPasswordShown) => !isPasswordShown);
   };
 
   const isPhoneNumber = isOnlyNumbers(value) && showNumberPrefix;
