@@ -1,4 +1,4 @@
-export const getErrorMessage = (error) => {
+const getErrorMessage = (error) => {
   switch (error) {
     case "Invalid username or password":
       return "نام کاربری یا رمز ورودی صحیح نیست.";
@@ -12,3 +12,5 @@ export const getErrorMessage = (error) => {
       return "مشکلی رخ داده";
   }
 };
+
+export default getErrorMessage;
