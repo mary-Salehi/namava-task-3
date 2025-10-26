@@ -9,17 +9,18 @@ import getErrorMessage from "../../../utils/getErrorMessage";
 import formatPhoneNumber from "../../../utils/formatPhoneNumber";
 import Spinner from "./lottinAnimation/spinner";
 import { convertToLatinNumbers } from "../../../utils/convertNumbers";
+import convertObjectKeysToPascal from "../../../utils/convertObjectKeysToPascal";
 
 function LoginForm() {
   const classes = useStyles();
 
   const [userData, setUserData] = useState({
-    UserName: "",
-    Password: "",
+    userName: "",
+    password: "",
   });
 
   const isFormValid =
-    isValidUsername(userData.UserName) && isValidPassword(userData.Password);
+    isValidUsername(userData.userName) && isValidPassword(userData.password);
 
   const handleInputChange = (e) => {
     const latinValue = convertToLatinNumbers(e.target.value);
@@ -33,10 +34,11 @@ function LoginForm() {
 
     const formattedUserData = {
       ...userData,
-      UserName: formatPhoneNumber(userData.UserName),
+      userName: formatPhoneNumber(userData.userName),
     };
 
-    sendUserData(formattedUserData);
+    const pascalCaseUserData = convertObjectKeysToPascal(formattedUserData);
+    sendUserData(pascalCaseUserData);
   };
 
   useEffect(() => {
@@ -62,8 +64,8 @@ function LoginForm() {
         label="شماره تلفن همراه یا ایمیل"
         type="text"
         placeholder="شماره تلفن همراه یا ایمیل"
-        name="UserName"
-        value={userData.UserName}
+        name="userName"
+        value={userData.userName}
         onChange={handleInputChange}
         className={classes.inputContainer}
         showNumberPrefix={true}
@@ -72,8 +74,8 @@ function LoginForm() {
         label="رمز عبور"
         type="password"
         placeholder="رمز عبور"
-        name="Password"
-        value={userData.Password}
+        name="password"
+        value={userData.password}
         onChange={handleInputChange}
         className={classes.inputContainer}
         passwordIcon={true}
