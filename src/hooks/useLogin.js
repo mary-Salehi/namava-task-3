@@ -2,6 +2,7 @@ import { useState } from "react";
 import apiService from "../services/apiService";
 import { setCookie } from "../utils/handleCookie";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const END_POINT = "/v2.0/accounts/login";
 
@@ -21,6 +22,7 @@ export const useLogin = () => {
       });
 
       if (response.data.succeeded) {
+        toast.dismiss(); 
         navigate("/");
         setCookie("token", response.data.result.token);
       } else {
