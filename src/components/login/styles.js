@@ -20,20 +20,8 @@ const styles = {
   },
 
   register: {
-    fontSize: 12,
-    fontWeight: 700,
-    color: theme.colors.mainBlue,
-    cursor: "pointer",
     position: "absolute",
     left: 0,
-
-    "&:hover": {
-      color: "rgba(0, 95, 180, 0.9)",
-    },
-
-    [theme.mq(theme.breakpoints.tablet)]: {
-      fontSize: 14,
-    },
   },
 
   header: {
@@ -72,20 +60,10 @@ const styles = {
   },
 
   link: {
-    display: "block",
-    textAlign: "center",
     padding: 10,
-    fontSize: 12,
-    fontWeight: 700,
-    color: theme.colors.mainBlue,
     marginBottom: 12,
 
-    "&:hover": {
-      color: "rgba(0, 95, 180, 0.9)",
-    },
-
     [theme.mq(theme.breakpoints.tablet)]: {
-      fontSize: 14,
       marginBottom: 20,
     },
   },
