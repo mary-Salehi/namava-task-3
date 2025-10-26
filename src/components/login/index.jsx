@@ -1,18 +1,18 @@
-import { Link } from "react-router-dom";
 import NamavaLogo from "../icons/NamavaLogo";
 import { useStyles } from "./styles";
 import EnterIcon from "../icons/EnterIcon";
 import LoginForm from "../forms/loginForm";
+import LinkButton from "../../ui/linkButton";
 
 function Login() {
   const classes = useStyles();
   return (
     <div className={classes.login}>
       <div className={classes.header}>
-        <Link to='/'>
+        <LinkButton path="/">
           <NamavaLogo className={classes.namavaLogo} />
-        </Link>
-        <Link className={classes.register}>ثبت نام</Link>
+        </LinkButton>
+        <LinkButton className={classes.register}>ثبت نام</LinkButton>
       </div>
       <div className={classes.enter}>
         <EnterIcon />
@@ -22,8 +22,10 @@ function Login() {
         لطفا شماره تلفن همراه یا ایمیل خود را وارد کنید.
       </p>
       <LoginForm />
-      <Link className={classes.link}>ورود با رمز یکبار مصرف</Link>
-      <Link className={classes.link}>رمز عبور خود را فراموش کرده‌ام.</Link>
+      <LinkButton className={classes.link}>ورود با رمز یکبار مصرف</LinkButton>
+      <LinkButton className={classes.link}>
+        رمز عبور خود را فراموش کرده‌ام.
+      </LinkButton>
     </div>
   );
 }
