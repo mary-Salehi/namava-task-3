@@ -78,7 +78,6 @@ function LoginForm() {
         value={userData.password}
         onChange={handleInputChange}
         className={classes.inputContainer}
-        passwordIcon={true}
       />
       <button
         disabled={isLoading || !isFormValid}

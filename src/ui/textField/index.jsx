@@ -14,7 +14,6 @@ function TextField({
   onChange,
   className,
   showNumberPrefix = false,
-  passwordIcon = false,
 }) {
   const classes = useStyles();
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -35,14 +34,14 @@ function TextField({
           </span>
         )}
         <input
-          type={passwordIcon ? (isPasswordShown ? "text" : "password") : type}
+          type={type === 'password' ? (isPasswordShown ? "text" : "password") : type}
           placeholder={placeholder}
           value={isPhoneNumber ? convertToPersianNumbers(value) : value}
           name={name}
           onChange={onChange}
           maxLength={isPhoneNumber ? 11 : undefined}
         />
-        {value.length > 0 && passwordIcon && (
+        {value.length > 0 && type === 'password' && (
           <span onClick={handleShowPassword} className={classes.showPassBtn}>
             {isPasswordShown ? <ClosedEye /> : <OpenEye />}
           </span>
