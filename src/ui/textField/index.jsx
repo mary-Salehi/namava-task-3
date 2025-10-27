@@ -13,36 +13,35 @@ function TextField({
   placeholder,
   onChange,
   className,
-  phoneIcon = false,
-  passwordIcon = false,
+  showNumberPrefix = false,
 }) {
   const classes = useStyles();
-  const [isPasswordShown, setIspasswordShown] = useState(false);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const handleShowPassword = () => {
-    setIspasswordShown(!isPasswordShown);
+    setIsPasswordShown((isPasswordShown) => !isPasswordShown);
   };
 
-  const isPhoneNumber = isOnlyNumbers(value) && phoneIcon;
+  const isPhoneNumber = isOnlyNumbers(value) && showNumberPrefix;
 
   return (
     <div className={className}>
       <label>{label}</label>
       <div className={classes.inputWrapper} dir="ltr">
         {isPhoneNumber && value.length > 8 && (
-          <span className={classes.phoneIcon}>
+          <span className={classes.numberPrefix}>
             +{convertToPersianNumbers(98)}
           </span>
         )}
         <input
-          type={passwordIcon ? (isPasswordShown ? "text" : "password") : type}
+          type={type === 'password' ? (isPasswordShown ? "text" : "password") : type}
           placeholder={placeholder}
           value={isPhoneNumber ? convertToPersianNumbers(value) : value}
           name={name}
           onChange={onChange}
           maxLength={isPhoneNumber ? 11 : undefined}
         />
-        {value.length > 0 && passwordIcon && (
+        {value.length > 0 && type === 'password' && (
           <span onClick={handleShowPassword} className={classes.showPassBtn}>
             {isPasswordShown ? <ClosedEye /> : <OpenEye />}
           </span>
